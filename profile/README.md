@@ -53,7 +53,7 @@
   <img src="https://raw.githubusercontent.com/codinasion/.github/master/assets/rainbow-hr.png" alt="rainbow hr" width="100%" height="70%">
 </div>
 
-<h6 align="center"><b><a href="https://github.com/codinasion-archive">👉🏻 Our Archieved repos can be found here</a></b></h6>
+<h6 align="center"><b><a href="https://github.com/codinasion-archive">👉🏻 Our Archived repos can be found here</a></b></h6>
 
 <div align="center">
   <img src="https://raw.githubusercontent.com/codinasion/.github/master/assets/rainbow-hr.png" alt="rainbow hr" width="100%" height="70%">
