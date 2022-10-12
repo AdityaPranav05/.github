@@ -1,0 +1,27 @@
+name: "Invitation"
+
+description: "Automate Invites"
+
+inputs:
+  OWNER:
+    description: "repo owner"
+    required: true
+    default: "codinasion"
+
+  REPO:
+    description: "repo name"
+    required: true
+    default: ".github"
+
+  TOKEN:
+    description: "github token"
+    required: true
+
+  ADD_ALL_TO_TEAM:
+    description: "add all members to team"
+    required: true
+    default: false
+
+runs:
+  using: "node16"
+  main: "../action.js"

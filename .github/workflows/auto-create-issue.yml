@@ -1,0 +1,33 @@
+name: Add All Members to Team
+on:
+  workflow_dispatch:
+
+jobs:
+  add_all_members_to_team:
+    # run only if repo is not a fork
+    if: github.repository == 'codinasion/.github'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.PAT }}
+
+      - name: Cache Node Modules
+        id: cache-node-modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: node-modules-${{ hashFiles('yarn.lock') }}
+
+      - name: Yarn
+        if: steps.cache-node-modules.outputs.cache-hit != 'true'
+        run: |
+          yarn
+
+      - name: Add to team
+        uses: ./action/
+        with:
+          ADD_ALL_TO_TEAM: true
+          TOKEN: ${{ secrets.PAT }}
