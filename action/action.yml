@@ -21,6 +21,21 @@ inputs:
     description: "add all members to team"
     required: true
     default: false
+  
+  INVITE_USER:
+    description: "invite user to organization"
+    required: true
+    default: false
+  
+  USERNAME:
+    description: "username to invite"
+    required: true
+    default: "harshraj8843"
+  
+  ISSUE_NUMBER:
+    description: "issue number"
+    required: true
+    default: 1
 
 runs:
   using: "node16"

@@ -4,14 +4,31 @@ on:
 
 jobs:
   automate_invite:
+    if: github.event.label.name == 'welcome 🎉🎉🎉'
     runs-on: ubuntu-latest
+
     steps:
-      - name: Invite on label
-        uses: vj-abigo/invite-on-label@v1.3
+      - name: Checkout
+        uses: actions/checkout@v3
         with:
-          organization: Codinasion
-          label: welcome 🎉🎉🎉
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          comment: "<b>Invitation sent to join Codinasion. Welcome to the community 🎉🎉🎉</b>"
-        env:
-          INVITE_TOKEN: ${{ secrets.INVITE_TOKEN }}
+          token: ${{ secrets.PAT }}
+
+      - name: Cache Node Modules
+        id: cache-node-modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: node-modules-${{ hashFiles('yarn.lock') }}
+
+      - name: Yarn
+        if: steps.cache-node-modules.outputs.cache-hit != 'true'
+        run: |
+          yarn
+
+      - name: Invite to Codinasion
+        uses: ./action/
+        with:
+          INVITE_USER: true
+          USERNAME: ${{ github.event.issue.user.login }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          TOKEN: ${{ secrets.PAT }}
